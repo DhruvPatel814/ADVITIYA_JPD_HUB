@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub - Find & Hire Top Talent</title>
+    <meta name="description" content="Connect with skilled professionals for your next project. Browse and hire top talent across various domains.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="js/store.js" defer></script>
+    <script src="js/auth.js" defer></script> <boltAction type="file" filePath="index.html">    <script src="js/admin.js" defer></script>
+    <script src="js/talents.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script type="module" src="js/main.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">TalentHub</h1>
+            <div class="nav-links">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="talents">Talents</a>
+                <span id="authLinks">
+                    <a href="#" class="nav-link" data-page="login">Login</a>
+                    <a href="#" class="nav-link" data-page="register">Register</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Discover Exceptional Talent</h1>
+                <p>Connect with skilled professionals who can bring your vision to life</p>
+                <div class="hero-actions">
+                    <button class="cta-button" data-page="talents">
+                        <span class="icon">🔍</span> Browse Talents
+                    </button>
+                    <button class="cta-button" data-page="register" style="background-color: transparent; color: var(--primary-color); border: 2px solid currentColor;">
+                        <span class="icon">✨</span> Become a Talent
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Talents Page -->
+        <section id="talents" class="page">
+            <div class="container">
+                <div class="filters">
+                    <input type="text" id="searchTalent" placeholder="Search by name, skills, or description...">
+                    <select id="skillFilter">
+                        <option value="">All Skills</option>
+                    </select>
+                </div>
+                <div id="talentGrid" class="talent-grid"></div>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login" class="page">
+            <div class="auth-container">
+                <h2>Welcome Back</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <span class="icon">🔐</span> Login
+                    </button>
+                </form>
+                <p class="auth-footer">
+                    Don't have an account? 
+                    <a href="#" data-page="register" class="text-primary">Register here</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Register Page -->
+        <section id="register" class="page">
+            <div class="auth-container">
+                <h2>Join Our Talent Pool</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="skills">Skills (comma-separated)</label>
+                        <input type="text" id="skills" required placeholder="e.g., Web Development, UI Design, Marketing">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Professional Summary</label>
+                        <textarea id="description" required placeholder="Tell us about your experience and expertise..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Profile Photo URL</label>
+                        <input type="url" id="photo" required placeholder="Enter a URL for your profile photo">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required placeholder="Choose a strong password">
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <span class="icon">✨</span> Create Account
+                    </button>
+                </form>
+                <p class="auth-footer">
+                    Already have an account? 
+                    <a href="#" data-page="login" class="text-primary">Login here</a>
+                </p>
+            </div>
+        </section>
+
+        <section id="notification" class="page">
+            <div class="auth-container">
+              <h2>Send a Notification</h2>
+              <form id="notificationForm">
+                <div>
+                  <label for="phone">Phone Number:</label>
+                  <input type="tel" id="phone" required placeholder="+1234567890">
+                </div>
+                <div>
+                  <label for="message">Message:</label>
+                  <textarea id="message" required placeholder="Enter your message here"></textarea>
+                </div>
+                <button type="submit">Send Notification</button>
+              </form>
+              <p id="responseMessage"></p>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin" class="page">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Admin Dashboard</h2>
+                    <p>Manage talent profiles and hire requests</p>
+                    <div id="adminStats" class="admin-stats"></div>
+                </div>
+                <div class="pending-profiles">
+                    <h3>Pending Approvals</h3>
+                    <div id="pendingList"></div>
+                </div>
+                <div class="hire-requests">
+                    <h3>Hire Requests</h3>
+                    <div id="requestsList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profile" class="page">
+            <div class="container">
+                <div id="profileContent"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+</body>
+</html>
